@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>FND Mini App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #0f172a;
+      color: white;
+      padding: 40px;
+    }
+    h1 {
+      color: #22c55e;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #22c55e;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>FahrschulNetzwerkDeutschland</h1>
+  <p>Telegram Mini App Test Version</p>
+
+  <button onclick="sendData()">Start Platform</button>
+
+  <script>
+    let tg = window.Telegram.WebApp;
+    tg.expand();
+
+    function sendData() {
+      tg.sendData("User entered platform");
+    }
+  </script>
+
+</body>
+</html>
