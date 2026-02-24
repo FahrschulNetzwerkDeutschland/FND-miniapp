@@ -8,58 +8,97 @@
 
 <style>
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: #0f172a;
-  color: white;
-  font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0f172a;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    color: white;
 }
 
 .container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    padding: 20px;
 }
 
-h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
-  color: #22c55e;
+.header {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 40px;
 }
 
-p {
-  font-size: 16px;
+.subtitle {
+    color: #94a3b8;
+    margin-bottom: 40px;
 }
 
-button {
-  margin-top: 20px;
-  padding: 16px 30px;
-  font-size: 18px;
-  background: #22c55e;
-  border: none;
-  border-radius: 10px;
-  color: white;
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.card:hover {
+    background: #334155;
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.card p {
+    margin-top: 8px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.footer {
+    margin-top: 50px;
+    font-size: 12px;
+    color: #64748b;
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
-  <h1>FND</h1>
-  <p>Telegram Mini App</p>
-  <button onclick="sendData()">Start Plattform</button>
+
+<div class="header">FND</div>
+<div class="subtitle">Rolle auswählen</div>
+
+<div class="card" onclick="selectRole('instructor')">
+    <h2>👨‍🏫 Fahrlehrer</h2>
+    <p>Schüler verwalten · Fortschritt · Chat</p>
+</div>
+
+<div class="card" onclick="selectRole('school')">
+    <h2>🏫 Fahrschule</h2>
+    <p>Profil · Preise · Termine</p>
+</div>
+
+<div class="card" onclick="selectRole('student')">
+    <h2>🎓 Fahrschüler</h2>
+    <p>Anmelden · Termine · Übersicht</p>
+</div>
+
+<div class="footer">
+© FND Plattform – Beta
+</div>
+
 </div>
 
 <script>
 let tg = window.Telegram.WebApp;
 tg.expand();
 
-function sendData() {
-  tg.showAlert("Mini App läuft korrekt!");
+function selectRole(role) {
+    tg.sendData(role);
+    alert("Ausgewählt: " + role);
 }
 </script>
+
 </body>
 </html>
