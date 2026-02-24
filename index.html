@@ -66,37 +66,73 @@ html, body {
 
 <div class="container">
 
+<!-- ROLE SCREEN -->
+<div id="roleScreen">
+
 <div class="header">FND</div>
 <div class="subtitle">Rolle auswählen</div>
 
-<div class="card" onclick="selectRole('instructor')">
+<div class="card" onclick="showDashboard('instructor')">
     <h2>👨‍🏫 Fahrlehrer</h2>
     <p>Schüler verwalten · Fortschritt · Chat</p>
 </div>
 
-<div class="card" onclick="selectRole('school')">
+<div class="card" onclick="showDashboard('school')">
     <h2>🏫 Fahrschule</h2>
     <p>Profil · Preise · Termine</p>
 </div>
 
-<div class="card" onclick="selectRole('student')">
+<div class="card" onclick="showDashboard('student')">
     <h2>🎓 Fahrschüler</h2>
     <p>Anmelden · Termine · Übersicht</p>
 </div>
 
-<div class="footer">
-© FND Plattform – Beta
+</div>
+
+<!-- DASHBOARD SCREEN -->
+<div id="dashboardScreen" style="display:none;">
+
+<div style="margin-bottom:20px; cursor:pointer;" onclick="backToRoles()">
+← Zurück
+</div>
+
+<div class="header">FND</div>
+<div class="subtitle" id="roleTitle">Dashboard</div>
+
+<div class="card">
+    <h2>Übersicht</h2>
+    <p>Hier erscheint später dein Dashboard-Inhalt</p>
 </div>
 
 </div>
 
+</div>
 <script>
 let tg = window.Telegram.WebApp;
 tg.expand();
 
-function selectRole(role) {
-    tg.sendData(role);
-    alert("Ausgewählt: " + role);
+function showDashboard(role) {
+  // Hide role cards
+  document.getElementById("roleScreen").style.display = "none";
+
+  // Show dashboard screen
+  document.getElementById("dashboardScreen").style.display = "block";
+
+  // Set role title
+  let title = "";
+  if (role === "instructor") title = "👨‍🏫 Fahrlehrer";
+  if (role === "school") title = "🏫 Fahrschule";
+  if (role === "student") title = "🎓 Fahrschüler";
+
+  document.getElementById("roleTitle").innerText = title;
+
+  // Send role to bot (optional)
+  tg.sendData(role);
+}
+
+function backToRoles() {
+  document.getElementById("dashboardScreen").style.display = "none";
+  document.getElementById("roleScreen").style.display = "block";
 }
 </script>
 
